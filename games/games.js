@@ -30,37 +30,41 @@ nameForm.addEventListener('submit', (e) => {
     // don't forget to prevent the default form behavior!
     e.preventDefault(e);
     // get the name data from the form
-
+    const data = new FormData(nameForm);
     // set the state to this data from the form
-
+    const name1 = data.get('team-one');
+    const name2 = data.get('team-two');
+    
+    currentGame.name1 = name1;
+    currentGame.name2 = name2;
     // reset the form values
-
-    displayCurrentGameEl()
+    nameForm.requestFullscreen();
+    displayCurrentGameEl();
 });
 
 
 teamOneAddButton.addEventListener('click', () => {
     // increment the current state for team one's score
-    
-    displayCurrentGameEl()
+    score1++;
+    displayCurrentGameEl();
 });
 
 teamTwoAddButton.addEventListener('click', () => {
     // increment the current state for team two's score
-
-    displayCurrentGameEl()
+    score2++;
+    displayCurrentGameEl();
 });
 
 teamOneSubtractButton.addEventListener('click', () => {
     // decrement the current state for team one's score
-
-    displayCurrentGameEl()
+    score1--;
+    displayCurrentGameEl();
 });
 
 teamTwoSubtractButton.addEventListener('click', () => {
-    // decrement the current state for team two's score
-
-    displayCurrentGameEl()
+    // decrement   the current state for team two's score
+    score2--;
+    displayCurrentGameEl();
 });
 
 finishGameButton.addEventListener('click', async() => {
@@ -88,13 +92,16 @@ window.addEventListener('', async() => {
 
 function displayCurrentGameEl() {
     // clear out the current game div
-
+    currentGameEl.textContent = '';
     // change the label to show team one's name;
+    teamOneLabel.textContent = currentGame.name1;
+    teamOneLabel.textContent = currentGame.name2;
     // change the label to show team two's name;
-
+    currentGameEl.classList.add('current');
     // call the render game function to create a game element
-    
+    const game = renderGame(currentGame);
     // append the element to the cleared out current game div
+    currentGameEl.append(game);
 }
 
 
