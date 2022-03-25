@@ -20,7 +20,7 @@ const teamOneLabel = document.getElementById('team-one-name');
 const teamTwoLabel = document.getElementById('team-two-name');
 
 checkAuth();
-
+getGames();
 let pastGames = [];
 
 let game = {
@@ -93,7 +93,7 @@ logoutButton.addEventListener('click', () => {
 });
 
  // on load . . .
-window.addEventListener('', async() => {
+window.addEventListener('load', async() => {
     // display all past games (hint: call displayAllGames())
     const games = await getGames();
     if (games) {
